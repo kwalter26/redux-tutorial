@@ -1,14 +1,22 @@
 import Constants from './constants';
-import {allSkiDays,goal} from './initialState.json';
+import { errors } from './store/reducers';
+
+const state = [
+  "user not authorized",
+  "server feed not found"
+]
+
+const action = {
+  type: Constants.CLEAR_ERROR,
+  payload: 0
+};
+
+const nextState = errors(state, action);
 
 console.log(`
 
-  Ski Day Counter
-  ==================
-  The goal is ${goal} days 
-  Initally there are ${allSkiDays.length} ski days in state
+    initial goal: ${state}
+    action: ${JSON.stringify(action)}
+    new goal: ${JSON.stringify(nextState)}
 
-  ==================
-  ${Object.keys(Constants).join('\n      ')}
-
-`)
+`);
