@@ -1,23 +1,31 @@
 import Constants from './constants';
-import { skiDay } from './store/reducers';
+import { allSkiDays } from './store/reducers';
 
-const state = null;
-
-const action = {
-  type: Constants.ADD_DAY,
-  payload: {
-    "resort":"Heavenly",
-    "date":"2016-12-16",
+const state = [
+  {
+    "resort":"Kirkwood",
+    "date":"2016-12-15",
     "powder":true,
     "backcountry":false
+  },
+  {
+    "resort":"Boreal",
+    "date":"2016-12-16",
+    "powder":false,
+    "backcountry": false
   }
+]
+
+const action = {
+  type: Constants.REMOVE_DAY,
+  payload: "2016-12-15"
 };
 
-const nextState = skiDay(state, action);
+const nextState = allSkiDays(state, action);
 
 console.log(`
 
-    initial goal: ${state}
+    initial goal: ${JSON.stringify(state)}
     action: ${JSON.stringify(action)}
     new goal: ${JSON.stringify(nextState)}
 

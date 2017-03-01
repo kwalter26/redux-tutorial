@@ -8,16 +8,35 @@ export const skiDay = (state = null , action) => (action.type == Constants.ADD_D
   action.payload :
   state;
 
-export const errors = (state = [], action) => {
-  switch(action.type) {
+export const errors = (state = [] , action) => {
+  switch (action.type) {
     case Constants.ADD_ERROR:
       return [
         ...state,
         action.payload
-      ]
+      ];
     case Constants.CLEAR_ERROR:
-      return state.filter((message,i)=> i !== action.payload)
+      return state.filter((message, i) => i !== action.payload);
     default:
-      return state
+      return state;
   }
-}
+};
+
+export const allSkiDays = (state = [] , action) => {
+
+  switch (action.type) {
+    case Constants.ADD_DAY:
+      const hasDayAlready = state.some(skiDay => skiDay.date === action.payload.date);
+      return (hasDayAlready) ?
+        state :
+        [
+          ...state,
+          skiDay(null, action)
+        ];
+    case Constants.REMOVE_DAY:
+      return state.filter(skiDay => skiDay.date !== action.payload)
+
+    default:
+      return state;
+  }
+};
