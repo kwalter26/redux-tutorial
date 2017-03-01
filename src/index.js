@@ -1,17 +1,19 @@
 import Constants from './constants';
-import { errors } from './store/reducers';
+import { skiDay } from './store/reducers';
 
-const state = [
-  "user not authorized",
-  "server feed not found"
-]
+const state = null;
 
 const action = {
-  type: Constants.CLEAR_ERROR,
-  payload: 0
+  type: Constants.ADD_DAY,
+  payload: {
+    "resort":"Heavenly",
+    "date":"2016-12-16",
+    "powder":true,
+    "backcountry":false
+  }
 };
 
-const nextState = errors(state, action);
+const nextState = skiDay(state, action);
 
 console.log(`
 
