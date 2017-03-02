@@ -4,13 +4,20 @@
   "description": "Project for learning redux",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node ./src"
+    "start": "webpack-dev-server"
   },
   "author": "Kyle Walter",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.23.0",
+    "babel-loader": "^6.3.2",
     "babel-preset-latest": "^6.22.0",
-    "babel-preset-stage-0": "^6.22.0"
+    "babel-preset-stage-0": "^6.22.0",
+    "json-loader": "^0.5.4",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  },
+  "dependencies": {
+    "redux": "^3.6.0"
   }
 }
