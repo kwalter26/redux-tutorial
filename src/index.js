@@ -1,8 +1,8 @@
-import storeFactory from './store';
-import { addDay, removeDay, setGoal } from './store/actions';
+import storeFactory from './store'
+import { suggestResortNames } from './actions'
 
-const store = storeFactory();
+const store = storeFactory()
 
-store.dispatch(addDay('Heavenly', '2016-12-22'));
-store.dispatch(removeDay('2016-12-22'));
-store.dispatch(setGoal(3));
+store.dispatch(
+	suggestResortNames("hea")
+)

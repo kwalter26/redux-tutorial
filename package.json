@@ -4,6 +4,7 @@
   "description": "Project for learning redux",
   "main": "index.js",
   "scripts": {
+    "suggestions": "babel-node ./server --port 3333 --delay 500",
     "start": "webpack-dev-server"
   },
   "author": "Kyle Walter",
@@ -18,6 +19,11 @@
     "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
-    "redux": "^3.6.0"
+    "cors": "^2.8.1",
+    "express": "^4.15.0",
+    "isomorphic-fetch": "^2.2.1",
+    "minimist": "^1.2.0",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   }
 }
