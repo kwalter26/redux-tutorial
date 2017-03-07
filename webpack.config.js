@@ -1,35 +1,55 @@
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 var path = require('path');
+var webpack = require('webpack');
 
-var DIST_DIR = path.resolve(__dirname,'dist/assets');
-var SRC_DIR = path.resolve(__dirname,'src')
-
-
+var SRC = path.resolve(__dirname, 'src/index.js');
+var DIST = path.resolve(__dirname, 'dist/');
+var ASSETS = path.resolve(DIST, 'assets');
 
 module.exports = {
-  entry: path.join(SRC_DIR,'index.js'),
+  entry: SRC,
   output: {
-    path: DIST_DIR,
+    path: ASSETS,
     filename: 'bundle.js',
     publicPath: 'assets'
   },
   devServer: {
     inline: true,
-    contentBase: path.join(__dirname,'dist'),
+    contentBase: DIST,
     port: 3000
   },
-  module:{
+  module: {
     loaders: [
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        loaders: ['babel-loader'],
+        loader: ['babel-loader']
       },
       {
         test: /\.json$/,
         exclude: /(node_modules)/,
-        loaders: ['json-loader']
+        loader: 'json-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader!autoprefixer-loader'
+
+      },
+      {
+        test: /\.scss/,
+        loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader'
       }
     ]
-  }
-
-}
+  },
+  plugins: [
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.optimize\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: {discardComments: {removeAll: true}},
+      canPrint: true
+    }),
+    new webpack.ProvidePlugin({
+      'React': 'react'
+    })
+  ]
+};
